@@ -1,0 +1,10 @@
+jacobi
+*.o
+*.npy
+bench_tmp/
+input.txt
+output.txt
+*.txt
+!requirements.txt
+.venv/
+__pycache__/
