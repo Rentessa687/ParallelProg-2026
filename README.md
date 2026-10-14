@@ -6,7 +6,7 @@
 собственном отчёте:
 
 - [Лабораторная работа 1](./lab1) — последовательная версия. [Отчёт](./lab1/REPORT.md)
-- Лабораторная работа 2 — параллельная версия на OpenMP. *(в разработке)*
+- [Лабораторная работа 2](./lab2) — параллельная версия на OpenMP. [Отчёт](./lab2/REPORT.md)
 
 ## О чём репозиторий
 
@@ -32,7 +32,9 @@
 Для каждого размера задачи `n` генерируется тестовая диагонально
 доминирующая СЛАУ (`generate_data.py`), решатель запускается через
 `benchmark.py`, результаты усредняются по нескольким запускам и попадают
-в `results.csv` соответствующей лабораторной работы.
+в `results.csv` соответствующей лабораторной работы. В лабораторной работе 2
+для каждой конфигурации (размер задачи × число потоков) делается 10 замерных
+запусков после прогревочного, в таблицу попадает медиана времени.
 
 ### Замер
 
@@ -51,7 +53,8 @@
 
 - Компилятор C++ (GCC/Clang), поддержка C++17;
 - `make`;
-- Python 3.10+, пакеты `numpy`, `matplotlib`.
+- Python 3.10+, пакеты `numpy`, `matplotlib`;
+- для лабораторной работы 2: поддержка OpenMP (на macOS — `brew install libomp`).
 
 ## Быстрый старт (на примере лабораторной работы 1)
 
@@ -61,6 +64,17 @@ make
 python3 generate_data.py 2000 input.txt
 ./jacobi input.txt output.txt 1e-8 100000
 python3 verify.py input.txt output.txt
+```
+
+## Быстрый старт (лабораторная работа 2)
+
+```bash
+cd lab2
+make
+python3 generate_data.py 2000 input.txt
+./jacobi_omp input.txt output.txt 1e-8 100000 4
+python3 verify.py input.txt output.txt
+python3 benchmark_omp.py
 ```
 
 ## Структура репозитория
@@ -75,5 +89,14 @@ ParallelProg-2026/
 │   ├── Makefile
 │   ├── README.md          # сборка и запуск
 │   └── REPORT.md          # отчёт с результатами
-└── lab2/                  # версия на OpenMP (в разработке)
+└── lab2/                  # версия на OpenMP
+    ├── jacobi.cpp
+    ├── generate_data.py
+    ├── verify.py
+    ├── benchmark_omp.py
+    ├── Makefile
+    ├── results.csv
+    ├── results_plot.png
+    ├── README.md          # сборка и запуск
+    └── REPORT.md          # отчёт с результатами
 ```
