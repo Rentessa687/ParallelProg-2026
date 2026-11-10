@@ -7,6 +7,7 @@
 
 - [Лабораторная работа 1](./lab1) — последовательная версия. [Отчёт](./lab1/REPORT.md)
 - [Лабораторная работа 2](./lab2) — параллельная версия на OpenMP. [Отчёт](./lab2/REPORT.md)
+- [Лабораторная работа 3](./lab3) — параллельная версия на MPI, запуск на суперкомпьютере. [Отчёт](./lab3/REPORT.md)
 
 ## О чём репозиторий
 
@@ -54,7 +55,8 @@
 - Компилятор C++ (GCC/Clang), поддержка C++17;
 - `make`;
 - Python 3.10+, пакеты `numpy`, `matplotlib`;
-- для лабораторной работы 2: поддержка OpenMP (на macOS — `brew install libomp`).
+- для лабораторной работы 2: поддержка OpenMP (на macOS — `brew install libomp`);
+- для лабораторной работы 3: реализация MPI (OpenMPI или Intel MPI; на macOS — `brew install open-mpi`).
 
 ## Быстрый старт (на примере лабораторной работы 1)
 
@@ -89,13 +91,27 @@ ParallelProg-2026/
 │   ├── Makefile
 │   ├── README.md          # сборка и запуск
 │   └── REPORT.md          # отчёт с результатами
-└── lab2/                  # версия на OpenMP
-    ├── jacobi.cpp
+├── lab2/                  # версия на OpenMP
+│   ├── jacobi.cpp
+│   ├── generate_data.py
+│   ├── verify.py
+│   ├── benchmark_omp.py
+│   ├── Makefile
+│   ├── results.csv
+│   ├── results_plot.png
+│   ├── README.md          # сборка и запуск
+│   └── REPORT.md          # отчёт с результатами
+└── lab3/                  # версия на MPI (суперкомпьютер)
+    ├── jacobi_mpi.cpp
     ├── generate_data.py
     ├── verify.py
-    ├── benchmark_omp.py
+    ├── bench.sbatch
+    ├── submit_all.sh
+    ├── gen_all.sh
+    ├── analyze.py
     ├── Makefile
-    ├── results.csv
+    ├── results/
+    ├── results_summary.csv
     ├── results_plot.png
     ├── README.md          # сборка и запуск
     └── REPORT.md          # отчёт с результатами
